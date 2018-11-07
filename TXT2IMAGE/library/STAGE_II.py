@@ -50,14 +50,14 @@ def build_STAGE_GEN(img_shape, gf):
     u4 = deconv2d(u3, d2, gf * 8)
     u5 = deconv2d(u4, d1, gf * 4)
     u6 = deconv2d(u5, d0, gf * 2)
+
     '''
-    ## 128 * 128
     #u = UpSampling2D(size=2)(u6)
     u = Conv2D(gf, kernel_size=4, strides=1, padding='same', activation='relu')(u6)
     u = InstanceNormalization()(u)
     u = Activation('elu')(u)
     '''
-    ### 256 * 256
+
     u7 = UpSampling2D(size=2)(u6)
     output_img = Conv2D(channals, kernel_size=5, strides=1,
                         padding='same')(u7)

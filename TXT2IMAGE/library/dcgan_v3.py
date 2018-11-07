@@ -14,6 +14,7 @@ import os
 
 from TXT2IMAGE.library.utility.glove_loader import GloveModel
 from TXT2IMAGE.library.InstanceNormaliztion import InstanceNormalization
+from TXT2IMAGE.library.STAGE_II import build_STAGE_GEN
 
 class DCGanV3(object):
     model_name = 'dc-gan-v3'
@@ -31,6 +32,7 @@ class DCGanV3(object):
         self.config = None
         self.glove_source_dir_path = './very_large_data'
         self.glove_model = GloveModel()
+        self.stageII = None
 
     @staticmethod
     def get_config_file_path(model_dir_path):
@@ -53,49 +55,72 @@ class DCGanV3(object):
         generator_layer = Activation('tanh')(merged)
 
         generator_layer = Dense(512 * init_img_width * init_img_height)(generator_layer)
-        generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = BatchNormalization()(generator_layer)
         #generator_layer = InstanceNormalization()(generator_layer)
-        generator_layer = Activation('tanh')(generator_layer)
+        #generator_layer = Activation('tanh')(generator_layer)
+        #generator_layer = Activation('elu')(generator_layer)
 
         generator_layer = Reshape((init_img_width, init_img_height, 512),
                                   input_shape=(512 * init_img_width * init_img_height,))(generator_layer)
 
-        #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Deconvolution2D(512, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer1 = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer2 = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = Concatenate()([generator_layer1, generator_layer2])
+        '''
         #generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = Activation('tanh')(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
+        '''
+        generator_layer = Conv2D(512, kernel_size=5, padding='same')(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = Activation('tanh')(generator_layer)
+        generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
 
+        generator_layer1 = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer2 = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = Concatenate()([generator_layer1, generator_layer2])
+        '''
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = Activation('tanh')(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Dropout(0.4)(generator_layer)
+        '''
         generator_layer = Conv2D(256, kernel_size=5, padding='same')(generator_layer)
         #generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
-
-        #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
-        #generator_layer = InstanceNormalization()(generator_layer)
-        generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
-        #generator_layer = Dropout(0.4)(generator_layer)
-
-        generator_layer = Conv2D(128, kernel_size=5, padding='same')(generator_layer)
-        #generator_layer = InstanceNormalization()(generator_layer)
-        generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
-
-        #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Deconvolution2D(128, kernel_size=5, strides=2, padding='same')(generator_layer)
-        #generator_layer = InstanceNormalization()(generator_layer)
-        generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Activation('tanh')(generator_layer)
         generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
 
-        generator_layer = Conv2D(64, kernel_size=5, padding='same')(generator_layer)
+        generator_layer1 = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer2 = Deconvolution2D(128, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = Concatenate()([generator_layer1, generator_layer2])
+        '''
         #generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = Activation('tanh')(generator_layer)
+        #generator_layer = Activation('tanh')(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
+        '''
+        generator_layer = Conv2D(128, kernel_size=5, padding='same')(generator_layer)
+        '''
+        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = BatchNormalization()(generator_layer)
+        generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Activation('elu')(generator_layer)
+        '''
+        generator_layer = Conv2D(64, kernel_size=5, padding='same')(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Activation('relu')(generator_layer)
+        #generator_layer = Activation('elu')(generator_layer)
 
         generator_layer = Conv2D(self.img_channels, kernel_size=5, padding='same')(generator_layer)
         generator_output = Activation('tanh')(generator_layer)
@@ -107,14 +132,14 @@ class DCGanV3(object):
         text_input2 = Input(shape=(self.text_input_dim,))
 
         text_layer2 = Dense(1024)(text_input2)
-        text_layer2 = Dropout(0.4)(text_layer2)
+        text_layer2 = Dropout(0.3)(text_layer2)
 
         img_input2 = Input(shape=(self.img_width, self.img_height, self.img_channels))
 
         img_layer2 = Conv2D(64, kernel_size=(5, 5), padding='same')(img_input2)
         img_layer2 = BatchNormalization()(img_layer2)
-        img_layer2 = Activation('tanh')(img_layer2)
-        img_layer2 = Dropout(0.4)(img_layer2)
+        img_layer2 = Activation('elu')(img_layer2)
+        img_layer2 = Dropout(0.3)(img_layer2)
 
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
         img_layer2 = Conv2D(128, kernel_size=5)(img_layer2)
@@ -237,6 +262,117 @@ class DCGanV3(object):
                                         epoch=epoch % 20, batch_index=batch_index% 20)
                     self.save_snapshots(image_batch, snapshot_dir_path=snapshot_dir_path,
                                         epoch=epoch % 20, batch_index=(900+batch_index % 20))
+
+                    fp = open(snapshot_dir_path + DCGanV3.model_name+str(epoch%20) + "-" + str(batch_index%20) + ".txt", "w")
+                    for t in texts:
+                        fp.write(t + '\n')
+                    fp.close()
+                    print(epoch % 20)
+                    print(batch_index % 20)
+                    print("++++snap++++++")
+                """
+                """
+                self.discriminator.trainable = True
+                d_loss = self.discriminator.train_on_batch([np.concatenate((image_batch, generated_images)),
+                                                            np.concatenate((text_batch, text_batch))],
+                                                           np.array([1] * batch_size + [0] * batch_size))
+
+                print("Epoch %d batch %d d_loss : %f" % (epoch, batch_index, d_loss))
+
+                # Step 2: train the generator
+                for index in range(batch_size):
+                    noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
+                """
+                """
+                self.discriminator.trainable = False
+                g_loss = self.model.train_on_batch([noise, text_batch], np.array([1] * batch_size))
+
+                print("Epoch %d batch %d g_loss : %f" % (epoch, batch_index, g_loss))
+                if (epoch * batch_size + batch_index) % 10 == 9:
+                    self.generator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'), True)
+                    self.discriminator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'), True)
+
+
+        self.generator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'), True)
+        self.discriminator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'), True)
+
+    def fit_with_stageII(self, model_dir_path, image_label_pairs, s_label_pairs, epochs=None, batch_size=None, snapshot_dir_path=None,
+            snapshot_interval=None):
+
+        if epochs is None:
+            epochs = 100
+
+        if batch_size is None:
+            batch_size = 128
+
+        if snapshot_interval is None:
+            snapshot_interval = 20
+
+        self.config = dict()
+        self.config['img_width'] = self.img_width
+        self.config['img_height'] = self.img_height
+        self.config['random_input_dim'] = self.random_input_dim
+        self.config['text_input_dim'] = self.text_input_dim
+        self.config['img_channels'] = self.img_channels
+        self.config['glove_source_dir_path'] = self.glove_source_dir_path
+        self.create_model()
+        self.stageII = build_STAGE_GEN((64, 64, 3), 64)
+
+        #self.load_model(model_dir_path)
+        self.glove_model.load(data_dir_path=self.glove_source_dir_path, embedding_dim=self.text_input_dim)
+        config_file_path = DCGanV3.get_config_file_path(model_dir_path)
+
+        np.save(config_file_path, self.config)
+        noise = np.zeros((batch_size, self.random_input_dim))
+        text_batch = np.zeros((batch_size, self.text_input_dim))
+
+
+
+        for epoch in range(epochs):
+            print("Epoch is", epoch)
+            batch_count = int(image_label_pairs.shape[0] / batch_size)
+            print("Number of batches", batch_count)
+            for batch_index in range(batch_count):
+                # Step 1: train the discriminator
+                texts = []
+                image_label_pair_batch = image_label_pairs[batch_index * batch_size:(batch_index + 1) * batch_size]
+
+                image_batch = []
+                for index in range(batch_size):
+                    image_label_pair = image_label_pair_batch[index]
+                    normalized_img = image_label_pair[0]
+                    text = image_label_pair[1]
+                    texts.append(text)
+                    image_batch.append(normalized_img)
+                    text_batch[index, :] = self.glove_model.encode_doc(text, self.text_input_dim)
+                    noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
+                image_batch = np.array(image_batch)
+
+                s_label_pair_batch = s_label_pairs[batch_index * batch_size:(batch_index + 1) * batch_size]
+
+                simage_batch = []
+                for index in range(batch_size):
+                    s_label_pair = s_label_pair_batch[index]
+                    normalized_img = s_label_pair[0]
+                    simage_batch.append(normalized_img)
+
+                simage_batch = np.array(simage_batch)
+
+                # image_batch = np.transpose(image_batch, (0, 2, 3, 1))
+                generated_images = self.generator.predict([noise, text_batch], verbose=0)
+
+                s_loss = self.stageII.train_on_batch(generated_images, simage_batch)
+                print("Epoch %d batch %d s_loss : %f" % (epoch, batch_index, s_loss))
+
+                generated_simages = self.stageII.predict(generated_images)
+
+                if (epoch * batch_size + batch_index) % snapshot_interval == 0 and snapshot_dir_path is not None:
+                    self.save_snapshots(generated_images, snapshot_dir_path=snapshot_dir_path,
+                                        epoch=epoch % 20, batch_index=batch_index% 20)
+                    self.save_snapshots(image_batch, snapshot_dir_path=snapshot_dir_path,
+                                        epoch=epoch % 20, batch_index=(900+batch_index % 20))
+                    self.save_snapshots(generated_simages, snapshot_dir_path=snapshot_dir_path,
+                                        epoch=epoch % 20, batch_index=(100+batch_index % 20))
 
                     fp = open(snapshot_dir_path + DCGanV3.model_name+str(epoch%20) + "-" + str(batch_index%20) + ".txt", "w")
                     for t in texts:
