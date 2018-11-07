@@ -27,7 +27,7 @@ class DCGanV3(object):
         self.img_height = 7
         self.img_channels = 1
         self.random_input_dim = 80
-        self.text_input_dim = 200
+        self.text_input_dim = 300
         self.config = None
         self.glove_source_dir_path = './very_large_data'
         self.glove_model = GloveModel()
@@ -53,8 +53,8 @@ class DCGanV3(object):
         generator_layer = Activation('tanh')(merged)
 
         generator_layer = Dense(512 * init_img_width * init_img_height)(generator_layer)
-        #generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = Activation('tanh')(generator_layer)
 
         generator_layer = Reshape((init_img_width, init_img_height, 512),
@@ -62,31 +62,39 @@ class DCGanV3(object):
 
         #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
         generator_layer = Deconvolution2D(512, kernel_size=5, strides=2, padding='same')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
 
         generator_layer = Conv2D(256, kernel_size=5, padding='same')(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
 
         #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
         generator_layer = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
 
         generator_layer = Conv2D(128, kernel_size=5, padding='same')(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
 
         #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
         generator_layer = Deconvolution2D(128, kernel_size=5, strides=2, padding='same')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
         generator_layer = Dropout(0.4)(generator_layer)
 
         generator_layer = Conv2D(64, kernel_size=5, padding='same')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = BatchNormalization()(generator_layer)
+        generator_layer = Activation('tanh')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
 
         generator_layer = Conv2D(self.img_channels, kernel_size=5, padding='same')(generator_layer)
@@ -109,14 +117,16 @@ class DCGanV3(object):
         img_layer2 = Dropout(0.4)(img_layer2)
 
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
-        img_layer2 = Conv2D(256, kernel_size=5)(img_layer2)
+        img_layer2 = Conv2D(128, kernel_size=5)(img_layer2)
         img_layer2 = Activation('elu')(img_layer2)
         img_layer2 = Dropout(0.3)(img_layer2)
 
+        '''
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
         img_layer2 = Conv2D(1024, kernel_size=5)(img_layer2)
         img_layer2 = Activation('elu')(img_layer2)
         img_layer2 = Dropout(0.2)(img_layer2)
+        '''
 
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
 
