@@ -86,7 +86,7 @@ def load_normalized_img_and_its_text_with_stageII(img_dir_path, txt_dir_path, im
                 continue
             if wrong_name[name]:
                 continue
-            if (count == 7000):
+            if (count == 3000):
                 break
 
             text = texts[name]
