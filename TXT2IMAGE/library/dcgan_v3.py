@@ -2,7 +2,7 @@ from keras.models import Model, Sequential
 from keras.layers import Input, Dense, Reshape, concatenate
 from keras.layers.core import Activation, Flatten
 from keras.layers.normalization import BatchNormalization
-from keras.layers.convolutional import UpSampling2D, Conv2D, MaxPooling2D
+from keras.layers.convolutional import UpSampling2D, Conv2D, MaxPooling2D, Deconvolution2D
 from keras.optimizers import SGD, Adam
 from keras.layers import Dropout, Concatenate
 from TXT2IMAGE.library.utility.image_utils import combine_normalized_images, img_from_normalized_img
@@ -26,7 +26,7 @@ class DCGanV3(object):
         self.img_width = 7
         self.img_height = 7
         self.img_channels = 1
-        self.random_input_dim = 200
+        self.random_input_dim = 80
         self.text_input_dim = 200
         self.config = None
         self.glove_source_dir_path = './very_large_data'
@@ -53,23 +53,42 @@ class DCGanV3(object):
         generator_layer = Activation('tanh')(merged)
 
         generator_layer = Dense(512 * init_img_width * init_img_height)(generator_layer)
+        #generator_layer = BatchNormalization()(generator_layer)
         generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = Activation('tanh')(generator_layer)
 
         generator_layer = Reshape((init_img_width, init_img_height, 512),
                                   input_shape=(512 * init_img_width * init_img_height,))(generator_layer)
 
-        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Deconvolution2D(512, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Dropout(0.4)(generator_layer)
+
         generator_layer = Conv2D(256, kernel_size=5, padding='same')(generator_layer)
-        generator_layer = Activation('tanh')(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+
+        #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Dropout(0.4)(generator_layer)
+
+        generator_layer = Conv2D(128, kernel_size=5, padding='same')(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+
+        #generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Deconvolution2D(128, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
         generator_layer = Dropout(0.4)(generator_layer)
 
-        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
         generator_layer = Conv2D(64, kernel_size=5, padding='same')(generator_layer)
-        generator_layer = Activation('tanh')(generator_layer)
-        generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Dropout(0.4)(generator_layer)
 
-        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
         generator_layer = Conv2D(self.img_channels, kernel_size=5, padding='same')(generator_layer)
         generator_output = Activation('tanh')(generator_layer)
 
@@ -92,18 +111,17 @@ class DCGanV3(object):
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
         img_layer2 = Conv2D(256, kernel_size=5)(img_layer2)
         img_layer2 = Activation('elu')(img_layer2)
-        img_layer2 = Dropout(0.4)(img_layer2)
+        img_layer2 = Dropout(0.3)(img_layer2)
 
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
         img_layer2 = Conv2D(1024, kernel_size=5)(img_layer2)
         img_layer2 = Activation('elu')(img_layer2)
-        img_layer2 = Dropout(0.4)(img_layer2)
+        img_layer2 = Dropout(0.2)(img_layer2)
 
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
-        img_layer2 = Dropout(0.4)(img_layer2)
 
+        #img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
         img_layer2 = Flatten()(img_layer2)
-
         img_layer2 = Dense(1024)(img_layer2)
 
 
@@ -116,7 +134,7 @@ class DCGanV3(object):
         self.discriminator = Model([img_input2, text_input2], discriminator_output)
 
         d_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
-        d_optim = Adam(0.0005, 0.5)
+        d_optim = Adam(0.00005, 0.5)
         self.discriminator.compile(loss='binary_crossentropy', optimizer=d_optim)
 
         print('discriminator: ', self.discriminator.summary())
@@ -127,7 +145,7 @@ class DCGanV3(object):
         self.discriminator.trainable = False
 
         #g_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
-        g_optim = Adam(0.0005, 0.5)
+        g_optim = Adam(0.00005, 0.5)
 
         self.model.compile(loss='binary_crossentropy', optimizer=g_optim)
 
