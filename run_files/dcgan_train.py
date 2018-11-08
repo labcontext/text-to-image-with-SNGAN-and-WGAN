@@ -46,7 +46,7 @@ def main():
     gan.random_input_dim = 80
     gan.glove_source_dir_path = './very_large_data'
 
-    batch_size = 8
+    batch_size = 4
     epochs = 50000
 
 

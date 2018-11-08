@@ -43,8 +43,87 @@ class DCGanV3(object):
         return os.path.join(model_dir_path, DCGanV3.model_name + '-' + model_type + '-weights.h5')
 
     def create_model(self):
+        init_img_width = self.img_width // 4
+        init_img_height = self.img_height // 4
+
+        random_input = Input(shape=(self.random_input_dim,))
+        text_input1 = Input(shape=(self.text_input_dim,))
+        random_dense = Dense(1024)(random_input)
+        text_layer1 = Dense(1024)(text_input1)
+
+        merged = concatenate([random_dense, text_layer1])
+        generator_layer = Activation('tanh')(merged)
+
+        generator_layer = Dense(128 * init_img_width * init_img_height)(generator_layer)
+        #generator_layer = BatchNormalization()(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Activation('tanh')(generator_layer)
+        generator_layer = Reshape((init_img_width, init_img_height, 128),
+                                  input_shape=(128 * init_img_width * init_img_height,))(generator_layer)
+        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Conv2D(64, kernel_size=5, padding='same')(generator_layer)
+        generator_layer = Activation('tanh')(generator_layer)
+
+        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Conv2D(self.img_channels, kernel_size=5, padding='same')(generator_layer)
+        generator_output = Activation('tanh')(generator_layer)
+
+        self.generator = Model([random_input, text_input1], generator_output)
+
+        self.generator = Model([random_input, text_input1], generator_output)
+        self.generator.compile(loss='mean_squared_error', optimizer="SGD")
+        print('generator: ', self.generator.summary())
+        text_input2 = Input(shape=(self.text_input_dim,))
+        text_layer2 = Dense(1024)(text_input2)
+
+        img_input2 = Input(shape=(self.img_width, self.img_height, self.img_channels))
+        img_layer2 = Conv2D(64, kernel_size=(5, 5), padding='same')(
+            img_input2)
+        #img_layer2 = BatchNormalization()(img_layer2)
+        img_layer2 = InstanceNormalization()(img_layer2)
+        img_layer2 = Activation('relu')(img_layer2)
+
+        img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
+        img_layer2 = Conv2D(128, kernel_size=5)(img_layer2)
+        img_layer2 = Activation('relu')(img_layer2)
+
+        img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
+        img_layer2 = Flatten()(img_layer2)
+        img_layer2 = Dense(1024)(img_layer2)
+
+        merged = concatenate([img_layer2, text_layer2])
+
+        discriminator_layer = Activation('tanh')(merged)
+        discriminator_layer = Dense(1)(discriminator_layer)
+        discriminator_output = Activation('sigmoid')(discriminator_layer)
+
+        self.discriminator = Model([img_input2, text_input2], discriminator_output)
+
+        self.discriminator = Model([img_input2, text_input2], discriminator_output)
+
+
+        #d_optim = Adam(0.00005, 0.5)
+
+        #d_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
+        d_optim = Adam(0.00008, 0.5)
+        self.discriminator.compile(loss='binary_crossentropy', optimizer=d_optim)
+
+        print('discriminator: ', self.discriminator.summary())
+
+        model_output = self.discriminator([self.generator.output, text_input1])
+
+        self.model = Model([random_input, text_input1], model_output)
+        self.discriminator.trainable = False
+
+        #g_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
+        g_optim = Adam(0.00008, 0.5)
+        self.model.compile(loss='binary_crossentropy', optimizer=g_optim)
+
+        print('generator-discriminator: ', self.model.summary())
+
+    def create_model___trial(self):
         '''
-        the first model
+        #the first model
 
         init_img_width = self.img_width // 4
         init_img_height = self.img_height // 4
@@ -100,12 +179,11 @@ class DCGanV3(object):
                                   input_shape=(512 * init_img_width * init_img_height,))(generator_layer)
 
         generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Deconvolution2D(384, kernel_size=5, strides=2, padding='same')(generator_layer)
-        #generator_layer = BatchNormalization()(generator_layer)
+        #generator_layer = Deconvolution2D(384, kernel_size=5, strides=2, padding='same')(generator_layer)
         #generator_layer = Activation('tanh')(generator_layer)
-        #generator_layer = Dropout(0.4)(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Dropout(0.4)(generator_layer)
+        #generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
         #generator_layer = Concatenate()([generator_layer1, generator_layer2])
         '''
         #generator_layer = InstanceNormalization()(generator_layer)
@@ -114,16 +192,16 @@ class DCGanV3(object):
         generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
         '''
-        generator_layer = Conv2D(288, kernel_size=5, strides= 2, padding='same')(generator_layer)
+        generator_layer = Conv2D(256, kernel_size=5, strides= 1, padding='same')(generator_layer)
         #generator_layer = BatchNormalization()(generator_layer)
         #generator_layer = Activation('tanh')(generator_layer)
-        #generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Dropout(0.4)(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
 
         generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Deconvolution2D(256, kernel_size=5, strides=2, padding='same')(generator_layer)
+        #generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Concatenate()([generator_layer1, generator_layer2])
         '''
         #generator_layer = InstanceNormalization()(generator_layer)
@@ -132,16 +210,16 @@ class DCGanV3(object):
         generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
         '''
-        generator_layer = Conv2D(192, kernel_size=5, strides=2, padding='same')(generator_layer)
+        generator_layer = Conv2D(128, kernel_size=5, strides=1, padding='same')(generator_layer)
         #generator_layer = BatchNormalization()(generator_layer)
         #generator_layer = Activation('tanh')(generator_layer)
-        #generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Dropout(0.4)(generator_layer)
         generator_layer = Activation('elu')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
+        #generator_layer = InstanceNormalization()(generator_layer)
 
         generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Deconvolution2D(144, kernel_size=5, strides=2, padding='same')(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
+        #generator_layer = Deconvolution2D(144, kernel_size=5, strides=2, padding='same')(generator_layer)
+        #generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Concatenate()([generator_layer1, generator_layer2])
         '''
         #generator_layer = InstanceNormalization()(generator_layer)
@@ -150,18 +228,11 @@ class DCGanV3(object):
         generator_layer = Activation('elu')(generator_layer)
         #generator_layer = Dropout(0.4)(generator_layer)
         '''
-        generator_layer = Conv2D(96, kernel_size=5, strides=2, padding='same')(generator_layer)
-        #generator_layer = BatchNormalization()(generator_layer)
-        #generator_layer = Dropout(0.4)(generator_layer)
-        #generator_layer = Activation('relu')(generator_layer)
-        generator_layer = Activation('elu')(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
-
         generator_layer = Conv2D(64, kernel_size=5, strides=1, padding='same')(generator_layer)
         #generator_layer = BatchNormalization()(generator_layer)
-        #generator_layer = Dropout(0.4)(generator_layer)
+        generator_layer = Dropout(0.4)(generator_layer)
         #generator_layer = Activation('relu')(generator_layer)
-        generator_layer = Activation('relu')(generator_layer)
+        generator_layer = Activation('elu')(generator_layer)
         generator_layer = InstanceNormalization()(generator_layer)
 
         generator_layer = Conv2D(self.img_channels, kernel_size=5, padding='same')(generator_layer)
