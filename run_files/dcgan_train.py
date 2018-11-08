@@ -33,20 +33,20 @@ def main():
     image_label_pairs = load_normalized_img_and_its_text(img_dir_path, txt_dir_path, img_width=img_width, img_height=img_height)
     shuffle(image_label_pairs)
 
-    '''
-    image_label_pairs, Slabel_pairs = load_normalized_img_and_its_text_with_stageII(img_dir_path, txt_dir_path, img_width=img_width,
-                                                                      img_height=img_height,Simg_height=stage_height,Simg_width=stage_width)
-    '''
+
+    #image_label_pairs, Slabel_pairs = load_normalized_img_and_its_text_with_stageII(img_dir_path, txt_dir_path, img_width=img_width,
+    #                                                                  img_height=img_height,Simg_height=stage_height,Simg_width=stage_width)
+
 
     gan = DCGanV3()
     gan.img_width = img_width
     gan.img_height = img_height
 
     gan.img_channels = img_channels
-    gan.random_input_dim = 80
+    gan.random_input_dim = 50
     gan.glove_source_dir_path = './very_large_data'
 
-    batch_size = 4
+    batch_size = 64
     epochs = 50000
 
 
@@ -62,7 +62,7 @@ def main():
             snapshot_interval=100,
             batch_size=batch_size,
             epochs=epochs)
-        '''
+    '''
 
 if __name__ == '__main__':
     main()
