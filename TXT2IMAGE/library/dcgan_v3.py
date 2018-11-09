@@ -24,15 +24,18 @@ class DCGanV3(object):
         self.generator = None
         self.discriminator = None
         self.model = None
+        self.pos_dis_model = None
+        self.neg_dis_model = None
         self.img_width = 7
         self.img_height = 7
         self.img_channels = 1
-        self.random_input_dim = 80
+        self.random_input_dim = 50
         self.text_input_dim = 300
         self.config = None
         self.glove_source_dir_path = './very_large_data'
         self.glove_model = GloveModel()
         self.stageII = None
+        self.neg_model = None
 
     @staticmethod
     def get_config_file_path(model_dir_path):
@@ -42,13 +45,48 @@ class DCGanV3(object):
     def get_weight_file_path(model_dir_path, model_type):
         return os.path.join(model_dir_path, DCGanV3.model_name + '-' + model_type + '-weights.h5')
 
-    def create_model(self):
+    def build_discirm(self):
+
+        text_input = Input(shape=(self.text_input_dim,))
+        text_layer = Dense(1024)(text_input)
+
+        img_input = Input(shape=(self.img_width, self.img_height, self.img_channels))
+        img_layer = Conv2D(96, kernel_size=(5, 5), padding='same')(img_input)
+        img_layer = BatchNormalization()(img_layer)
+        #img_layer = InstanceNormalization()(img_layer)
+        img_layer = Activation('relu')(img_layer)
+
+        img_layer = MaxPooling2D(pool_size=(2, 2))(img_layer)
+        img_layer = Conv2D(128, kernel_size=5)(img_layer)
+        img_layer = Activation('relu')(img_layer)
+
+        img_layer = MaxPooling2D(pool_size=(2, 2))(img_layer)
+        img_layer = Flatten()(img_layer)
+        img_layer = Dense(1024)(img_layer)
+
+        merged = concatenate([img_layer, text_layer])
+
+        discriminator_layer = Activation('tanh')(merged)
+        discriminator_layer = Dense(1)(discriminator_layer)
+        discriminator_output = Activation('sigmoid')(discriminator_layer)
+
+        return discriminator
+
+    def build_text_to_img(self):
+
+        init_img_width = self.img_width // 4
+        init_img_height = self.img_height // 4
+        '''
         init_img_width = self.img_width // 4
         init_img_height = self.img_height // 4
 
+        ratio = self.random_input_dim / self.text_input_dim
+        dense_dim = int(ratio * 1024)
+
         random_input = Input(shape=(self.random_input_dim,))
         text_input1 = Input(shape=(self.text_input_dim,))
-        random_dense = Dense(1024)(random_input)
+        #random_dense = Dense(1024)(random_input)
+        random_dense = Dense(dense_dim)(random_input)
         text_layer1 = Dense(1024)(text_input1)
 
         merged = concatenate([random_dense, text_layer1])
@@ -56,12 +94,12 @@ class DCGanV3(object):
 
         generator_layer = Dense(128 * init_img_width * init_img_height)(generator_layer)
         #generator_layer = BatchNormalization()(generator_layer)
-        generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = Activation('tanh')(generator_layer)
         generator_layer = Reshape((init_img_width, init_img_height, 128),
                                   input_shape=(128 * init_img_width * init_img_height,))(generator_layer)
         generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
-        generator_layer = Conv2D(64, kernel_size=5, padding='same')(generator_layer)
+        generator_layer = Conv2D(96, kernel_size=5, padding='same')(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
         generator_layer = Activation('tanh')(generator_layer)
 
         generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
@@ -69,18 +107,58 @@ class DCGanV3(object):
         generator_output = Activation('tanh')(generator_layer)
 
         self.generator = Model([random_input, text_input1], generator_output)
+        '''
+        ratio = self.random_input_dim / self.text_input_dim
+        dense_dim = int(ratio * 1024)
 
-        self.generator = Model([random_input, text_input1], generator_output)
-        self.generator.compile(loss='mean_squared_error', optimizer="SGD")
+        random_input = Input(shape=(self.random_input_dim,))
+        text_input1 = Input(shape=(self.text_input_dim,))
+        #random_dense = Dense(1024)(random_input)
+        random_dense = Dense(dense_dim)(random_input)
+        text_layer1 = Dense(1024)(text_input1)
+
+        merged = concatenate([random_dense, text_layer1])
+        generator_layer = Activation('tanh')(merged)
+
+        generator_layer = Dense(128 * init_img_width * init_img_height)(generator_layer)
+        #generator_layer = BatchNormalization()(generator_layer)
+        generator_layer = Activation('tanh')(generator_layer)
+        generator_layer = Reshape((init_img_width, init_img_height, 128),
+                                  input_shape=(128 * init_img_width * init_img_height,))(generator_layer)
+        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Conv2D(96, kernel_size=5, padding='same')(generator_layer)
+        generator_layer = InstanceNormalization()(generator_layer)
+        generator_layer = Activation('tanh')(generator_layer)
+
+        generator_layer = UpSampling2D(size=(2, 2))(generator_layer)
+        generator_layer = Conv2D(self.img_channels, kernel_size=5, padding='same')(generator_layer)
+        generator_output = Activation('tanh')(generator_layer)
+
+        #generator = Model([random_input, text_input1], generator_output)
+        return generator_output
+
+    def create_model(self):
+
+        random_input = Input(shape=(self.random_input_dim,))
+        text_input = Input(shape=(self.text_input_dim,))
+
+        #g_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
+        g_optim = Adam(0.00008, 0.9)
+        #self.generator.compile(loss='mean_squared_error', optimizer="SGD")
+        generator_model = self.build_text_to_img()
+        self.generator = Model([random_input, text_input], generator_model)
+        self.generator.compile(loss='mean_squared_error', optimizer=g_optim)
         print('generator: ', self.generator.summary())
+
+        '''
         text_input2 = Input(shape=(self.text_input_dim,))
         text_layer2 = Dense(1024)(text_input2)
 
         img_input2 = Input(shape=(self.img_width, self.img_height, self.img_channels))
-        img_layer2 = Conv2D(64, kernel_size=(5, 5), padding='same')(
+        img_layer2 = Conv2D(96, kernel_size=(5, 5), padding='same')(
             img_input2)
-        #img_layer2 = BatchNormalization()(img_layer2)
-        img_layer2 = InstanceNormalization()(img_layer2)
+        img_layer2 = BatchNormalization()(img_layer2)
+        #img_layer2 = InstanceNormalization()(img_layer2)
         img_layer2 = Activation('relu')(img_layer2)
 
         img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
@@ -98,26 +176,27 @@ class DCGanV3(object):
         discriminator_output = Activation('sigmoid')(discriminator_layer)
 
         self.discriminator = Model([img_input2, text_input2], discriminator_output)
+        '''
 
-        self.discriminator = Model([img_input2, text_input2], discriminator_output)
+        dn_optim = Adam(0.00008, 0.9)
+        self.neg_dis_model = self.build_discirm()
+        neg_model_output = self.neg_dis_model([self.generator.output, text_input])
+        print('discriminator: ', self.neg_dis_model.summary())
+        self.neg_dis_model.compile(loss='binary_crossentropy', optimizer=dn_optim)
+        self.neg_dis_model.trainable = False
 
 
-        #d_optim = Adam(0.00005, 0.5)
+        dp_optim = Adam(0.00008, 0.9)
+        self.pos_dis_model = self.build_discirm()
+        pos_model_output = self.pos_dis_model([self.generator.output, text_input])
+        print('discriminator: ', self.pos_dis_model.summary())
+        self.pos_dis_model.compile(loss='binary_crossentropy', optimizer=dp_optim)
+        self.pos_dis_model.trainable = False
 
-        #d_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
-        d_optim = Adam(0.00008, 0.5)
-        self.discriminator.compile(loss='binary_crossentropy', optimizer=d_optim)
-
-        print('discriminator: ', self.discriminator.summary())
-
-        model_output = self.discriminator([self.generator.output, text_input1])
-
-        self.model = Model([random_input, text_input1], model_output)
-        self.discriminator.trainable = False
-
-        #g_optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
-        g_optim = Adam(0.00008, 0.5)
-        self.model.compile(loss='binary_crossentropy', optimizer=g_optim)
+        self.model = Model([random_input, text_input], [pos_model_output, neg_model_output])
+        #optim = SGD(lr=0.0005, momentum=0.9, nesterov=True)
+        optim = Adam(0.00008, 0.9)
+        self.model.compile(loss='binary_crossentropy', optimizer=optim)
 
         print('generator-discriminator: ', self.model.summary())
 
@@ -309,12 +388,9 @@ class DCGanV3(object):
         self.text_input_dim = self.config['text_input_dim']
         self.glove_source_dir_path = self.config['glove_source_dir_path']
         self.create_model()
-        try:
-            self.glove_model.load(self.glove_source_dir_path, embedding_dim=self.text_input_dim)
-            self.generator.load_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'))
-            self.discriminator.load_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'))
-        except:
-            pass
+        self.glove_model.load(self.glove_source_dir_path, embedding_dim=self.text_input_dim)
+        self.generator.load_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'))
+        self.discriminator.load_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'))
 
     def fit(self, model_dir_path, image_label_pairs, epochs=None, batch_size=None, snapshot_dir_path=None,
             snapshot_interval=None):
@@ -343,8 +419,6 @@ class DCGanV3(object):
         noise = np.zeros((batch_size, self.random_input_dim))
         text_batch = np.zeros((batch_size, self.text_input_dim))
 
-
-
         for epoch in range(epochs):
 
             print("Epoch is", epoch)
@@ -370,6 +444,57 @@ class DCGanV3(object):
                 # image_batch = np.transpose(image_batch, (0, 2, 3, 1))
                 generated_images = self.generator.predict([noise, text_batch], verbose=0)
 
+                """
+                """
+                self.discriminator.trainable = True
+                d_loss = self.discriminator.train_on_batch([image_batch,
+                                                            text_batch],
+                                                           np.array([1] * batch_size ))
+
+                print("Epoch %d batch %d d_batpos_loss : %f" % (epoch, batch_index, d_loss))
+
+                self.discriminator.trainable = False
+                g_loss = self.model.train_on_batch([noise, text_batch], np.array([1] * batch_size))
+
+                print("Epoch %d batch %d g_batpos_loss : %f" % (epoch, batch_index, g_loss))
+
+                ##########################
+                '''
+                generated_images = self.generator.predict([noise, text_batch], verbose=0)
+
+                self.discriminator.trainable = True
+                d_loss = self.discriminator.train_on_batch([generated_images,
+                                                            text_batch],
+                                                           [0] * batch_size)
+
+                print("Epoch %d batch %d d_batneg_loss : %f" % (epoch, batch_index, d_loss))
+
+                self.discriminator.trainable = False
+                g_loss = self.model.train_on_batch([noise, text_batch], np.array([1] * batch_size))
+
+                print("Epoch %d batch %d g_batneg_loss : %f" % (epoch, batch_index, g_loss))
+                '''
+                #############################
+
+                generated_images = self.generator.predict([noise, text_batch], verbose=0)
+
+                self.discriminator.trainable = True
+                d_loss = self.discriminator.train_on_batch([np.concatenate((image_batch, generated_images)),
+                                                            np.concatenate((text_batch, text_batch))],
+                                                           np.array([1] * batch_size + [0] * batch_size))
+
+                print("Epoch %d batch %d d_concat_loss : %f" % (epoch, batch_index, d_loss))
+
+                self.discriminator.trainable = False
+                g_loss = self.model.train_on_batch([noise, text_batch], np.array([1] * batch_size))
+
+                print("Epoch %d batch %d g_concat_loss : %f" % (epoch, batch_index, g_loss))
+
+                for index in range(batch_size):
+                    noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
+                """
+                """
+
                 if (epoch * batch_size + batch_index) % snapshot_interval == 0 and snapshot_dir_path is not None:
                     self.save_snapshots(generated_images, snapshot_dir_path=snapshot_dir_path,
                                         epoch=epoch % 20, batch_index=batch_index% 20)
@@ -383,24 +508,7 @@ class DCGanV3(object):
                     print(epoch % 20)
                     print(batch_index % 20)
                     print("++++snap++++++")
-                """
-                """
-                self.discriminator.trainable = True
-                d_loss = self.discriminator.train_on_batch([np.concatenate((image_batch, generated_images)),
-                                                            np.concatenate((text_batch, text_batch))],
-                                                           np.array([1] * batch_size + [0] * batch_size))
 
-                print("Epoch %d batch %d d_loss : %f" % (epoch, batch_index, d_loss))
-
-                # Step 2: train the generator
-                for index in range(batch_size):
-                    noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
-                """
-                """
-                self.discriminator.trainable = False
-                g_loss = self.model.train_on_batch([noise, text_batch], np.array([1] * batch_size))
-
-                print("Epoch %d batch %d g_loss : %f" % (epoch, batch_index, g_loss))
                 if (epoch * batch_size + batch_index) % 10 == 9:
                     self.generator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'), True)
                     self.discriminator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'), True)
@@ -408,6 +516,7 @@ class DCGanV3(object):
 
         self.generator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'), True)
         self.discriminator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'), True)
+
 
     def fit_with_stageII(self, model_dir_path, image_label_pairs, s_label_pairs, epochs=None, batch_size=None, snapshot_dir_path=None,
             snapshot_interval=None):
@@ -429,7 +538,7 @@ class DCGanV3(object):
         self.config['img_channels'] = self.img_channels
         self.config['glove_source_dir_path'] = self.glove_source_dir_path
         self.create_model()
-        self.stageII = build_STAGE_GEN((64, 64, 3), 64)
+        self.stageII = build_STAGE_GEN((64, 64, 3), 32)
 
         #self.load_model(model_dir_path)
         self.glove_model.load(data_dir_path=self.glove_source_dir_path, embedding_dim=self.text_input_dim)
@@ -438,8 +547,6 @@ class DCGanV3(object):
         np.save(config_file_path, self.config)
         noise = np.zeros((batch_size, self.random_input_dim))
         text_batch = np.zeros((batch_size, self.text_input_dim))
-
-
 
         for epoch in range(epochs):
             print("Epoch is", epoch)
@@ -515,9 +622,11 @@ class DCGanV3(object):
                 if (epoch * batch_size + batch_index) % 10 == 9:
                     self.generator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'), True)
                     self.discriminator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'), True)
+                    self.stageII.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'stage'), True)
 
         self.generator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'generator'), True)
         self.discriminator.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'discriminator'), True)
+        self.stageII.save_weights(DCGanV3.get_weight_file_path(model_dir_path, 'stage'), True)
 
     def generate_image_from_text(self, text):
         noise = np.zeros(shape=(1, self.random_input_dim))
