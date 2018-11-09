@@ -2,67 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63d44a3e-d651-41cb-971f-77f7d6acae77" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-916.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-10-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-10-900.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-11-16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-11-916.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-12-12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-12-912.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-13-8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-13-908.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-14-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-14-904.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-15-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-15-900.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-16-16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-16-916.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-17-12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-17-912.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-18-8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-18-908.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-19-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-19-904.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-2-12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-2-912.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-3-8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-3-908.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-4-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-4-904.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-5-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-5-900.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-6-16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-6-916.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-7-12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-7-912.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-8-8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-8-908.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-9-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-9-904.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v30-0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v30-0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v31-16.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v310-0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v311-16.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v312-12.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v313-8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v314-4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v315-0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v316-16.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v317-12.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v318-8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v319-4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v32-12.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v33-8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v34-4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v35-0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v36-16.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v37-12.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v38-8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v39-4.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,32 +28,32 @@
         <counts>
           <entry key="LICENSE" value="1" />
           <entry key="iml" value="1" />
-          <entry key="png" value="1185" />
-          <entry key="py" value="166" />
-          <entry key="txt" value="29" />
+          <entry key="png" value="1218" />
+          <entry key="py" value="168" />
+          <entry key="txt" value="31" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="Image" value="1185" />
-          <entry key="PLAIN_TEXT" value="30" />
-          <entry key="Python" value="166" />
+          <entry key="Image" value="1218" />
+          <entry key="PLAIN_TEXT" value="32" />
+          <entry key="Python" value="168" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="5" />
-          <entry key="py" value="7655" />
+          <entry key="py" value="8176" />
           <entry key="txt" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="51" />
-          <entry key="Python" value="7655" />
+          <entry key="Python" value="8176" />
         </counts>
       </usages-collector>
     </session>
@@ -119,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+            <state relative-caret-position="780">
+              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -131,16 +75,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="418" column="47" selection-start-line="418" selection-start-column="47" selection-end-line="418" selection-end-column="47" />
+            <state relative-caret-position="195">
+              <caret line="112" column="46" selection-start-line="112" selection-start-column="46" selection-end-line="112" selection-end-column="46" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
                 <element signature="e#8508#17013#0" />
-                <marker date="1541743919805" expanded="true" signature="1747:4105" ph="..." />
-                <marker date="1541743919805" expanded="true" signature="6044:6049" ph="..." />
+                <marker date="1541753163077" expanded="true" signature="2026:2035" ph="..." />
+                <marker date="1541753163077" expanded="true" signature="2214:6072" ph="..." />
+                <marker date="1541753163077" expanded="true" signature="8489:8494" ph="..." />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-2.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -149,8 +99,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/utility/img_cap_loader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1098">
+              <caret line="97" column="30" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -191,6 +148,8 @@
         <option value="$PROJECT_DIR$/TXT2IMAGE/library/utility/img_cap_loader.py" />
         <option value="$PROJECT_DIR$/TXT2IMAGE/library/dcgan_v3.py" />
         <option value="$PROJECT_DIR$/run_files/dcgan_train.py" />
+        <option value="$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py" />
+        <option value="$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py" />
       </list>
     </option>
   </component>
@@ -618,18 +577,26 @@
       <option name="project" value="LOCAL" />
       <updated>1541742399710</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="DCGAN of TEXT to IMAGE with lots of trial">
+      <created>1541744936944</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1541744936944</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="3722" y="24" width="1773" height="2136" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24871355" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24871355" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32934728" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49971414" visible="true" weight="0.32984555" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49971414" visible="true" weight="0.32984555" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3996014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -690,54 +657,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-12-912.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshotsdc-gan-v314-4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-13-908.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-17-912.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-17-12.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-18-908.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-18-8.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-19-904.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-15-900.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-7-912.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-9-904.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-6-916.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-11-916.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-10-900.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-8-8.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-15-0.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-14-4.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -763,13 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-12">
           <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v30-0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="55" lean-forward="true" selection-start-column="55" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -847,31 +759,94 @@
     <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-3-904.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v30-0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="42" selection-start-column="42" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-2-916.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-3-4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-3-904.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-4-12.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-4-912.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-6-8.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-5-900.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-5-0.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-8.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png">
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-8-4.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py">
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-908.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-2-16.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-7-16.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-9-12.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/utility/img_cap_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        <state relative-caret-position="1098">
+          <caret line="97" column="30" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="418" column="47" selection-start-line="418" selection-start-column="47" selection-end-line="418" selection-end-column="47" />
+        <state relative-caret-position="195">
+          <caret line="112" column="46" selection-start-line="112" selection-start-column="46" selection-end-line="112" selection-end-column="46" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
             <element signature="e#8508#17013#0" />
-            <marker date="1541743919805" expanded="true" signature="1747:4105" ph="..." />
-            <marker date="1541743919805" expanded="true" signature="6044:6049" ph="..." />
+            <marker date="1541753163077" expanded="true" signature="2026:2035" ph="..." />
+            <marker date="1541753163077" expanded="true" signature="2214:6072" ph="..." />
+            <marker date="1541753163077" expanded="true" signature="8489:8494" ph="..." />
           </folding>
         </state>
       </provider>
