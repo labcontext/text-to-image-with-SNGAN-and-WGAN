@@ -31,7 +31,7 @@ def main():
     from TXT2IMAGE.library.utility.img_cap_loader import load_normalized_img_and_its_text_with_stageII
 
     image_label_pairs = load_normalized_img_and_its_text(img_dir_path, txt_dir_path, img_width=img_width, img_height=img_height)
-    shuffle(image_label_pairs)
+    #shuffle(image_label_pairs)
 
 
     #image_label_pairs, Slabel_pairs = load_normalized_img_and_its_text_with_stageII(img_dir_path, txt_dir_path, img_width=img_width,

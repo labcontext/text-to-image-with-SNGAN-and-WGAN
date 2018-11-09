@@ -68,6 +68,7 @@ def load_normalized_img_and_its_text_with_stageII(img_dir_path, txt_dir_path, im
                 wrong_name[name] = False
             except:
                 wrong_name[name] = True
+
     print(count)
     for f in os.listdir(img_dir_path):
         filepath = os.path.join(img_dir_path, f)

@@ -64,7 +64,7 @@ def build_STAGE_GEN(img_shape, gf):
     output_img = Activation('tanh')(output_img)
 
     model = Model(d0, output_img)
-    optim = Adam(0.0002, 0.5)
+    optim = Adam(0.00008, 0.5)
     model.compile(loss='mae', optimizer=optim)
     model.summary()
 
