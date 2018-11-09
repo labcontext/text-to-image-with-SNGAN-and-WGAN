@@ -115,33 +115,6 @@ class DCGanV3(object):
         self.generator.compile(loss='mean_squared_error', optimizer=g_optim)
         print('generator: ', self.generator.summary())
 
-        '''
-        text_input2 = Input(shape=(self.text_input_dim,))
-        text_layer2 = Dense(1024)(text_input2)
-
-        img_input2 = Input(shape=(self.img_width, self.img_height, self.img_channels))
-        img_layer2 = Conv2D(96, kernel_size=(5, 5), padding='same')(
-            img_input2)
-        img_layer2 = BatchNormalization()(img_layer2)
-        #img_layer2 = InstanceNormalization()(img_layer2)
-        img_layer2 = Activation('relu')(img_layer2)
-
-        img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
-        img_layer2 = Conv2D(128, kernel_size=5)(img_layer2)
-        img_layer2 = Activation('relu')(img_layer2)
-
-        img_layer2 = MaxPooling2D(pool_size=(2, 2))(img_layer2)
-        img_layer2 = Flatten()(img_layer2)
-        img_layer2 = Dense(1024)(img_layer2)
-
-        merged = concatenate([img_layer2, text_layer2])
-
-        discriminator_layer = Activation('tanh')(merged)
-        discriminator_layer = Dense(1)(discriminator_layer)
-        discriminator_output = Activation('sigmoid')(discriminator_layer)
-
-        self.discriminator = Model([img_input2, text_input2], discriminator_output)
-        '''
         dn_optim = Adam(0.00008, 0.9)
 
         neg_dis_model_p = self.build_discirm(text_input, img_input)
@@ -151,14 +124,13 @@ class DCGanV3(object):
         self.neg_dis_model.compile(loss='binary_crossentropy', optimizer=dn_optim)
         self.neg_dis_model.trainable = False
 
-
         dp_optim = Adam(0.00008, 0.9)
 
         pos_dis_model_p = self.build_discirm(text_input, img_input)
         self.pos_dis_model = Model([text_input, img_input], pos_dis_model_p)
         pos_model_output = self.pos_dis_model([text_input, self.generator.output])
         print('discriminator: ', self.pos_dis_model.summary())
-        self.pos_dis_model.compile(loss='binary_crossentropy', optimizer=dn_optim)
+        self.pos_dis_model.compile(loss='binary_crossentropy', optimizer=dp_optim)
         self.pos_dis_model.trainable = False
 
         self.model = Model([random_input, text_input], [pos_model_output, neg_model_output])
@@ -415,85 +387,93 @@ class DCGanV3(object):
                 d_loss = self.pos_dis_model.train_on_batch([text_batch, image_batch],
                                                            np.array([1] * batch_size ))
 
-                print("Epoch %d batch %d d_batpos_loss : %f" % (epoch, batch_index, d_loss))
+                print("Epoch %d batch %d pos_d_batpos_loss : %f" % (epoch, batch_index, d_loss))
 
                 self.pos_dis_model.trainable = False
                 g_loss_p = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
 
-                print("Epoch %d batch %d g_batpos_loss : " % (epoch, batch_index))
+                print("Epoch %d batch %d pos_g_batpos_loss : " % (epoch, batch_index))
                 print(g_loss_p)
 
                 ##########################
                 self.neg_dis_model.trainable = True
                 d_loss = self.neg_dis_model.train_on_batch([text_batch, image_batch],
-                                                           np.array([1] * batch_size ))
+                                                           np.array([0] * batch_size ))
 
-                print("Epoch %d batch %d d_batpos_loss : %f" % (epoch, batch_index, d_loss))
+                print("Epoch %d batch %d pos_d_batneg_loss : %f" % (epoch, batch_index, d_loss))
 
                 self.neg_dis_model.trainable = False
                 g_loss_n = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
 
-                print("Epoch %d batch %d g_batneg_loss : " % (epoch, batch_index))
+                print("Epoch %d batch %d pos_g_batneg_loss : " % (epoch, batch_index))
                 print(g_loss_n)
 
                 #############################
+                for index in range(batch_size):
+                    noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
                 generated_images = self.generator.predict([noise, text_batch], verbose=0)
-                ##########################
+                #############################
+
                 self.pos_dis_model.trainable = True
                 d_loss = self.pos_dis_model.train_on_batch([text_batch, generated_images
                                                             ],
                                                            np.array([0] * batch_size ))
 
-                print("Epoch %d batch %d fake_d_batpos_loss : %f" % (epoch, batch_index, d_loss))
+                print("Epoch %d batch %d neg_d_batpos_loss : %f" % (epoch, batch_index, d_loss))
 
                 self.pos_dis_model.trainable = False
-                g_loss = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
+                g_loss_p = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
 
-                print("Epoch %d batch %d fake_g_batpos_loss : %f" % (epoch, batch_index, g_loss))
-
+                print("Epoch %d batch %d neg_g_batpos_loss : " % (epoch, batch_index))
+                print(g_loss_p)
                 ##########################
                 self.neg_dis_model.trainable = True
                 d_loss = self.neg_dis_model.train_on_batch([text_batch,generated_images
                                                             ],
-                                                           np.array([0] * batch_size ))
+                                                           np.array([1] * batch_size ))
 
-                print("Epoch %d batch %d fake_d_batneg_loss : %f" % (epoch, batch_index, d_loss))
+                print("Epoch %d batch %d neg_d_batneg_loss : %f" % (epoch, batch_index, d_loss))
 
                 self.neg_dis_model.trainable = False
-                g_loss = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
+                g_loss_n = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
 
-                print("Epoch %d batch %d fake_g_batneg_loss : %f" % (epoch, batch_index, g_loss))
-
+                print("Epoch %d batch %d neg_g_batneg_loss : " % (epoch, batch_index))
+                print(g_loss_n)
                 #############################
+                for index in range(batch_size):
+                    noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
                 generated_images = self.generator.predict([noise, text_batch], verbose=0)
                 #############################
-
                 self.pos_dis_model.trainable = True
                 d_loss = self.pos_dis_model.train_on_batch([np.concatenate((text_batch, text_batch)), np.concatenate((image_batch, generated_images))
                                                             ],
-                                                            [np.concatenate((np.array([1] * batch_size + [0] * batch_size),
-                                                            np.array([0] * batch_size + [0] * batch_size)))])
+                                                           np.array([1] * batch_size + [0] * batch_size))
+
                 self.pos_dis_model.trainable = False
 
-                print("Epoch %d batch %d d_concat_loss : %f" % (epoch, batch_index, d_loss))
+                print("Epoch %d batch %d con_d_batpos_loss : %f" % (epoch, batch_index, d_loss))
 
                 #############################
                 self.neg_dis_model.trainable = True
                 d_loss = self.neg_dis_model.train_on_batch([np.concatenate((text_batch, text_batch)), np.concatenate((image_batch, generated_images))
                                                             ],
-                                                           np.concatenate(
-                                                               (np.array([0] * batch_size + [0] * batch_size),
-                                                                np.array([1] * batch_size + [0] * batch_size))))
+                                                           np.array([0] * batch_size + [1] * batch_size))
                 self.neg_dis_model.trainable = False
 
-                print("Epoch %d batch %d fake_d_concat_loss : %f" % (epoch, batch_index, d_loss))
+                print("Epoch %d batch %d con_d_batneg_loss : %f" % (epoch, batch_index, d_loss))
 
-                g_loss = self.model.train_on_batch([noise, text_batch], np.array([1] * batch_size),np.array([0] * batch_size))
+                g_loss = self.model.train_on_batch([noise, text_batch], [np.array([1] * batch_size), np.array([0] * batch_size)])
 
-                print("Epoch %d batch %d g_concat_loss : %f" % (epoch, batch_index, g_loss))
+                print("Epoch %d batch %d cOn_g_batcon_loss : " % (epoch, batch_index))
+                print(g_loss)
 
+                #############################
                 for index in range(batch_size):
                     noise[index, :] = np.random.uniform(-1, 1, self.random_input_dim)
+                generated_images = self.generator.predict([noise, text_batch], verbose=0)
+                #############################
+
+
                 """
                 """
 
