@@ -37,6 +37,8 @@ def main():
 
         image = img_from_normalized_img(normalized_image)
         image.save(current_dir + '/data/outputs/' + DCGanV3.model_name + '-generated-' + str(i) + '-0.png')
+
+
         for j in range(3):
             generated_image = gan.generate_image_from_text(text)
             generated_image.save(current_dir + '/data/outputs/' + DCGanV3.model_name + '-generated-' + str(i) + '-' + str(j) + '.png')
