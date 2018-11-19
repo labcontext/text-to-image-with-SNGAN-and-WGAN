@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63d44a3e-d651-41cb-971f-77f7d6acae77" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v30-0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshotsdc-gan-v30-0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py" afterDir="false" />
+    <list default="true" id="63d44a3e-d651-41cb-971f-77f7d6acae77" name="Default Changelist" comment="DCGAN of TEXT to IMAGE with lots of trial">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,17 +52,63 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-315189592">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1767481034">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="12" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -75,22 +116,71 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="112" column="46" selection-start-line="112" selection-start-column="46" selection-end-line="112" selection-end-column="46" />
+            <state relative-caret-position="930">
+              <caret line="159" column="59" lean-forward="true" selection-start-line="159" selection-start-column="59" selection-end-line="160" selection-end-column="95" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
-                <element signature="e#8508#17013#0" />
-                <marker date="1541753163077" expanded="true" signature="2026:2035" ph="..." />
-                <marker date="1541753163077" expanded="true" signature="2214:6072" ph="..." />
-                <marker date="1541753163077" expanded="true" signature="8489:8494" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-2.png">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/SpectralNorm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="56" column="7" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/STAGE_II.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/GroupNormalization.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/LeakyReLU.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/InstanceNormaliztion.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -101,8 +191,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/utility/img_cap_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1098">
-              <caret line="97" column="30" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+            <state relative-caret-position="1455">
+              <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -127,7 +217,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../IMG_to_TEXT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -144,81 +234,70 @@
         <option value="$PROJECT_DIR$/run_files/dcgan_generate.py" />
         <option value="$PROJECT_DIR$/TXT2IMAGE/library/LeakyReLU.py" />
         <option value="$PROJECT_DIR$/TXT2IMAGE/library/utility/glove_loader.py" />
-        <option value="$PROJECT_DIR$/TXT2IMAGE/library/STAGE_II.py" />
         <option value="$PROJECT_DIR$/TXT2IMAGE/library/utility/img_cap_loader.py" />
         <option value="$PROJECT_DIR$/TXT2IMAGE/library/dcgan_v3.py" />
         <option value="$PROJECT_DIR$/run_files/dcgan_train.py" />
         <option value="$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py" />
         <option value="$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py" />
+        <option value="$PROJECT_DIR$/TXT2IMAGE/library/STAGE_II.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="3722" />
+    <option name="x" value="4309" />
     <option name="y" value="24" />
     <option name="width" value="1773" />
     <option name="height" value="2136" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
+              <item name="for_patching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="for_patching" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
+              <item name="for_patching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="for_patching" type="462c0819:PsiDirectoryNode" />
               <item name="run_files" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
-              <item name="run_files" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
+              <item name="for_patching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="for_patching" type="462c0819:PsiDirectoryNode" />
               <item name="run_files" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="snapshots" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
+              <item name="for_patching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="for_patching" type="462c0819:PsiDirectoryNode" />
               <item name="run_files" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="trials" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
+              <item name="for_patching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="for_patching" type="462c0819:PsiDirectoryNode" />
               <item name="TXT2IMAGE" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
-              <item name="TXT2IMAGE" type="462c0819:PsiDirectoryNode" />
-              <item name="library" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="keras-text-to-image-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMG_to_TEXT" type="462c0819:PsiDirectoryNode" />
+              <item name="for_patching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="for_patching" type="462c0819:PsiDirectoryNode" />
               <item name="TXT2IMAGE" type="462c0819:PsiDirectoryNode" />
               <item name="library" type="462c0819:PsiDirectoryNode" />
-              <item name="utility" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -584,14 +663,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541744936944</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="DCGAN of TEXT to IMAGE with lots of trial">
+      <created>1542180143562</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1542180143563</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3722" y="24" width="1773" height="2136" extended-state="4" />
+    <frame x="4309" y="24" width="1773" height="2136" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24871355" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24871355" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -629,6 +715,32 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="EXTERNAL /home/rd/recognition_reaserch/IMAGE_CAPTION/TEXT-TO-IMAGE-GANs-V.RESEARCH">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -657,27 +769,8 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-14-4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-14-904.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-13-8.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-12-12.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-11-16.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-10-0.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-9-4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-10-0.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-9-4.png" />
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/STAGE_II.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-12">
@@ -692,30 +785,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-2-912.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-4-904.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-3-908.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-7-12.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-6-16.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-2-912.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-4-904.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-3-908.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-7-12.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-6-16.png" />
     <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-5-0.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-4-4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-3-8.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-4-4.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-3-8.png" />
     <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/keras/engine/network.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -723,24 +802,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-1-916.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-19-4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-16-916.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-16-16.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-1-16.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-2-12.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-1-916.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-19-4.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-16-916.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-16-16.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-1-16.png" />
+    <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-2-12.png" />
     <entry file="file://$PROJECT_DIR$/run_files/data/snapshots/dc-gan-v3-2-916.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -796,40 +863,50 @@
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-900.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-8-4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-8-4.png" />
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-908.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-2-16.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-7-16.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-9-12.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/utility/img_cap_loader.py">
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-7-16.png" />
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-9-12.png" />
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-2.png" />
+    <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/SpectralNorm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="97" column="30" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+        <state relative-caret-position="555">
+          <caret line="56" column="7" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-1-2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py">
+    <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/GroupNormalization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
+        <state relative-caret-position="285">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/LeakyReLU.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/InstanceNormaliztion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,16 +914,39 @@
     <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/data/snapshots/dc-gan-v3-0-0.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py">
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/utility/img_cap_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="112" column="46" selection-start-line="112" selection-start-column="46" selection-end-line="112" selection-end-column="46" />
+        <state relative-caret-position="1455">
+          <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TXT2IMAGE/library/STAGE_II.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <element signature="e#8508#17013#0" />
-            <marker date="1541753163077" expanded="true" signature="2026:2035" ph="..." />
-            <marker date="1541753163077" expanded="true" signature="2214:6072" ph="..." />
-            <marker date="1541753163077" expanded="true" signature="8489:8494" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/run_files/dcgan_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../IMG_to_TEXT/TXT2IMAGE/library/dcgan_v3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="159" column="59" lean-forward="true" selection-start-line="159" selection-start-column="59" selection-end-line="160" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
