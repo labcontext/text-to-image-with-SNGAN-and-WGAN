@@ -207,28 +207,18 @@ class DCGanV3(object):
 
     def build_discirm_withSN_without_sigmoid(self, text_input, img_input):
 
-        text_layer = Dense(1024)(text_input)
-        text_layer = LeakyReLU(0.2)(text_layer)
-
-        # img_layer = MaxPooling2D(pool_size=(2, 2))(img_input)
-        # img_layer = Conv2D(64, kernel_size=(5, 5), strides=2, padding='same')(img_input)
         img_layer = ConvSN2D(64, kernel_size=5, strides=2, kernel_initializer='glorot_uniform', padding='same')(
             img_input)
         img_layer = LeakyReLU(0.2)(img_layer)
         img_layer = ConvSN2D(128, kernel_size=5, strides=1, kernel_initializer='glorot_uniform', padding='same')(
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
-
-        # img_layer = MaxPooling2D(pool_size=(2, 2))(img_layer)
-        # img_layer = Conv2D(128, kernel_size=5, strides=2)(img_layer)
         img_layer = ConvSN2D(128, kernel_size=5, strides=2, kernel_initializer='glorot_uniform', padding='same')(
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
         img_layer = ConvSN2D(256, kernel_size=5, strides=1, kernel_initializer='glorot_uniform', padding='same')(
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
-        # img_layer = MaxPooling2D(pool_size=(2, 2))(img_layer)
-        # img_layer = Conv2D(256, kernel_size=5, strides=2)(img_layer)
         img_layer = ConvSN2D(256, kernel_size=5, strides=2, kernel_initializer='glorot_uniform', padding='same')(
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
@@ -236,10 +226,6 @@ class DCGanV3(object):
         img_layer = ConvSN2D(512, kernel_size=5, strides=1, kernel_initializer='glorot_uniform', padding='same')(
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
-
-        # img_layer = MaxPooling2D(pool_size=(2, 2))(img_layer)
-        # img_layer = Conv2D(1024, kernel_size=5, strides=2)(img_layer)
-        # img_layer = Conv2D(1024, kernel_size=5)(img_layer)
         img_layer = ConvSN2D(512, kernel_size=5, strides=2, kernel_initializer='glorot_uniform', padding='same')(
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
@@ -248,11 +234,15 @@ class DCGanV3(object):
             img_layer)
         img_layer = LeakyReLU(0.2)(img_layer)
         img_layer = Flatten()(img_layer)
-        # img_layer = Dense(1024)(img_layer)
+
         img_layer = DenseSN(1024, kernel_initializer='glorot_uniform')(img_layer)
+        img_layer = LeakyReLU(0.2)(img_layer)
+
+        text_layer = DenseSN(1024, kernel_initializer='glorot_uniform')(text_input)
+        text_layer = LeakyReLU(0.2)(text_layer)
         merged = concatenate([img_layer, text_layer])
 
-        discriminator_output = Dense(1, activation='linear')(merged)
+        discriminator_output = DenseSN(1, kernel_initializer='glorot_uniform', activation='linear')(merged)
 
         return discriminator_output
 
