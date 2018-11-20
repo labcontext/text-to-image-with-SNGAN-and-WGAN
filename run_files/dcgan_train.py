@@ -32,8 +32,8 @@ def main():
     from TXT2IMAGE.library.utility.img_cap_loader import load_normalized_img_and_its_text_with_stageII
     from TXT2IMAGE.library.utility.img_cap_loader import load_normalized_flowers_img_and_its_text
 
-    #image_label_pairs = load_normalized_img_and_its_text(img_dir_path, txt_dir_path, img_width=img_width, img_height=img_height)
-    image_label_pairs = load_normalized_flowers_img_and_its_text(data_path,img_width,img_height)
+    image_label_pairs = load_normalized_img_and_its_text(img_dir_path, txt_dir_path, img_width=img_width, img_height=img_height)
+    #image_label_pairs = load_normalized_flowers_img_and_its_text(data_path,img_width,img_height)
     #shuffle(image_label_pairs)
     #image_label_pairs, Slabel_pairs = load_normalized_img_and_its_text_with_stageII(img_dir_path, txt_dir_path, img_width=img_width,
     #                                                                  img_height=img_height,Simg_height=stage_height,Simg_width=stage_width)
@@ -50,19 +50,25 @@ def main():
     batch_size = 32
     epochs = 50000
 
+    gan.fit_wasserstein(model_dir_path=model_dir_path, image_label_pairs=image_label_pairs,
+                        snapshot_dir_path=current_dir + '/data/snapshots',
+                        snapshot_interval=20,
+                        batch_size=batch_size,
+                        epochs=epochs)
+
+    '''
     gan.fit_mono(model_dir_path=model_dir_path, image_label_pairs=image_label_pairs,
             snapshot_dir_path=current_dir + '/data/snapshots',
             snapshot_interval=20,
             batch_size=batch_size,
             epochs=epochs)
 
-    ''' 
     gan.fit_DOUBLE(model_dir_path=model_dir_path, image_label_pairs=image_label_pairs,
             snapshot_dir_path=current_dir + '/data/snapshots',
             snapshot_interval=20,
             batch_size=batch_size,
             epochs=epochs)
-    
+
 
     gan.fit_with_stageII(model_dir_path=model_dir_path, image_label_pairs=image_label_pairs,s_label_pairs=Slabel_pairs,
             snapshot_dir_path=current_dir + '/data/snapshots',
@@ -70,6 +76,5 @@ def main():
             batch_size=batch_size,
             epochs=epochs)
     '''
-
 if __name__ == '__main__':
     main()
