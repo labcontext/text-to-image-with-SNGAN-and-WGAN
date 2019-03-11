@@ -1,5 +1,7 @@
 # text-to-image-with-SNGAN-and-WGAN
 TEXT TO IMAGE GANs inclufing tons of GANs models AND LOTS OF TRIALS with spaghetti code
+
+
 관련 논문 목록 https://github.com/wooramkang/Papers-for-image-caption-and-text-to-image.git
 
 세상 불친절한 git repo
