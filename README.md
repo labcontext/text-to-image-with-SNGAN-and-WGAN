@@ -1,7 +1,7 @@
 # text-to-image-with-SNGAN-and-WGAN
 TEXT TO IMAGE GANs inclufing tons of GANs models AND LOTS OF TRIALS with spaghetti code
 
-세상 불친절한 git
+세상 불친절한 git repo
 
 코드를 돌리기 위한 준비물
 
