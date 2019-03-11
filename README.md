@@ -11,7 +11,7 @@ TEXT TO IMAGE GANs inclufing tons of GANs models AND LOTS OF TRIALS with spaghet
 코드를 돌리기 위한 준비물
 
 1. glove 임베딩 100dim, 200dim, 300dim 각각에 pretrained 파일 (검색하면 나온다)
-2. caption 과 image 쌍으로 이루어진 데이터셋 (검색하면 수두룩하게 나온다)
+2. caption 과 image 쌍으로 이루어진 데이터셋 (검색하면 다양한 데이터 셋이 많이 나온다. 해보고 싶은 것을 찾는다)
 3. 충분한 컴퓨팅파워가 보장된 환경
 
 
