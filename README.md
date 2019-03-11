@@ -10,7 +10,13 @@ TEXT TO IMAGE GANs inclufing tons of GANs models AND LOTS OF TRIALS with spaghet
 
 코드를 돌리기 위한 준비물
 
-1. glove 임베딩 100dim, 200dim, 300dim 각각에 pretrained 파일
-2. caption 과 image 쌍으로 이루어진 데이터셋
+1. glove 임베딩 100dim, 200dim, 300dim 각각에 pretrained 파일 (검색하면 나온다)
+2. caption 과 image 쌍으로 이루어진 데이터셋 (검색하면 수두룩하게 나온다)
 3. 충분한 컴퓨팅파워가 보장된 환경
 
+
+코드 돌려보기
+1. 학습하고자 할때 dcgan_train.py 실행
+2. 생성해보고자 할때 dcgan_generate.py 실행
+3. 다만 스파게티가 매우 꼬여 있어서 TXT2IMAGE/library/dcgan_v3.py안쪽을 정리하며 목적에 맞게 수정후 주석을  실행
+4. 다른 형태로 트라이얼 하고자 할때는 각각의 다른 코드뭉치를 주석을 풀고 실행
